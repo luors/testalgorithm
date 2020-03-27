@@ -15,12 +15,12 @@ void printarr(const T a[],int len)
 template<class T>
 void qsort( T a[], int L, int R)
 {	
-	printf("R=%d,L=%d\n",L,R);
+	#printf("R=%d,L=%d\n",L,R);
 	if ( L >= R) 
 		return;
 	int LS = L,RS=R;
 	T M = a[L];
-	printf("Mid=%d\n",M);
+	#printf("Mid=%d\n",M);
 	while(true){
 		do{
 			RS--;
@@ -35,7 +35,7 @@ void qsort( T a[], int L, int R)
 	}
 	a[L] = a[RS];
 	a[RS] = M;
-	printf("LS=%d RS=%d\n",LS,RS);
+	#printf("LS=%d RS=%d\n",LS,RS);
 	printarr(a,9);
 	qsort(a,L,RS);
 	qsort(a,RS+1,R);

@@ -1,12 +1,12 @@
 CC = g++
-a.out: main.o
-	$(CC) -o a.out main.o
+quicksort.out: quicksort.o
+	$(CC) -o quicksort.out quicksort.o
 
-main.o : main.cpp
-	$(CC) -c main.cpp
+quicksort.o : quicksort.cpp
+	$(CC) -c quicksort.cpp
 
 clean:
-	rm *.o a.out
+	rm *.o *.out
 
 
 
