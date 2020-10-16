@@ -1,12 +1,13 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<assert.h>
 
 #define MAX_ROW 1024
 
 int main(int argc ,char* argv[]){
 	
-	FILE* fp = fopen("test.txt","r");
+	/* FILE* fp = fopen("test.txt","r");
 	if (fp == NULL){
 		printf("open map error\n");
 		return -1;
@@ -34,7 +35,12 @@ int main(int argc ,char* argv[]){
 		row++;
 		l = fgets(a,MAX_ROW,fp);
 	}
-	fclose(fp);
+	fclose(fp); */
+	
+	make_map_arr("test.txt");
+	char* p = "hello";
+	char a[1] = {*p};
+	printf("%s",a);
 	return 1;
 }
 
