@@ -2,11 +2,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<iostream>
+
 #include "gamemap.h"
 using namespace std;
 int main(int argc ,char* argv[]){
 	
-	MapPosList arr;
+	ScensePosList arr;
 	if (make_map_arr(arr,"test.txt"))
 		std::cout << "make map error " << endl;
 	
@@ -17,6 +18,12 @@ int main(int argc ,char* argv[]){
 		}
 		std::cout << endl;
 	}
+	
+	/*PosMapType m;
+	m.insert(make_pair(make_pair(1,1),1));
+	m.insert(make_pair(make_pair(1,1),1));
+	std::cout << "testmap" << m.size() << endl; */
+	
 	return 1;
 }
 
