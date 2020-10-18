@@ -20,7 +20,7 @@ void bbsort( T a[], int len)
 
 int main(int argc , char* argv[])
 {
-	int arr[] = {8,1,2,4,7,11,12,22,5,3,55};
+	int arr[] = {55,8,1,2,4,7,11,12,22,5,3,55};
 	int size = sizeof(arr)/sizeof(int);
 	printarr(arr,size);
 	std::cout << "Begin" << endl;
