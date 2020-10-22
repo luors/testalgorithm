@@ -64,23 +64,60 @@ int getDepth(TNode<T> *root){
 	return 1 + ((l >= r)?l:r);
 }
 
+typedef void (*VisitFunc)(void*);
 
+//前序遍历
 template<typename T>
-void tree_level(TNode<T> *root, std::queue<std::queue<T> > q)
-{//BFS 广度优遍历 层级遍历
+void tree_preOrder(TNode<T> *root, VisitFunc f){
 	
-	typedef std::queue<T> Q;
 	if (root == NULL) return;
-	Q q1,q2;
-	q1.push(root->val);
-	while(!q1.empty()){
-		q2.push(q1.front());
-		q1.pop();
-		if(root->_left) q1.push(root->_left->val);
-		if(root->_right) q1.push(root->_right->val);
-	}
+	(*f)((void*)root);
+	tree_preOrder(root->_left,f);
+	tree_preOrder(root->_right,f);
 }
 
+//中序遍历
+template<typename T>
+void tree_midOrder(TNode<T> *root, VisitFunc f){
+	
+	if (root == NULL) return;
+	tree_midOrder(root->_left,f);
+	(*f)((void*)root);
+	tree_midOrder(root->_right,f);
+}
+
+//后序遍历
+template<typename T>
+void tree_postOrder(TNode<T> *root, VisitFunc f){
+	if (root == NULL) return;
+	tree_postOrder(root->_left,f);
+	tree_postOrder(root->_right,f);
+	(*f)((void*)root);
+}
+
+template<typename T>
+void tree_levelOrder(TNode<T> *root, VisitFunc f)
+{//BFS 广度优遍历 层级遍历
+	
+	typedef std::queue<TNode<T>*> QTYPE;
+	QTYPE q;
+	while(root != NULL)
+	{
+		(*f)( (void*)root);
+		if (root->_left != NULL){
+			q.push(root->_left);
+		}
+		if (root->_right != NULL){
+			q.push(root->_right);
+		}
+		
+		if ( !q.empty()){
+			root = q.front();
+			q.pop();
+		}
+		else return;
+	}
+}
 
 #endif
 

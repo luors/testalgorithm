@@ -5,6 +5,13 @@
 #include "TNode.h"
 using namespace std;
 
+void VisitNode( void* p)
+{	
+	std::cout << ( (TNode<int>*)p)->val << "->";
+	//return p;
+}
+
+
 int main(int argc , char* argv[]){
 	
 	typedef struct TNode<int> IntNode;
@@ -26,20 +33,18 @@ int main(int argc , char* argv[]){
 	IntNode*L5 = l_insert(L2,111);
 	IntNode*L6 = r_insert(L2,71);
 	std::cout << "Tree Depth：" << getDepth(head) << endl;
-	std::queue< Q > qq;
-	tree_level(head,qq);
-	size = qq.size();
-	for (int i=0;i < size;i++){
-		Q qqq = qq.front();
-		qq.pop();
-		int size2 = qqq.size();
-		for (int j=0;j < size2;j++){
-			std::cout << q.front() << " ";
-			q.pop();
-		}
-		std::cout << endl;
-	}
-	//tree_print_level(head);
+	
+	//typedef void (*VisitFunc)(void*);
+	VisitFunc func = VisitNode;
+	tree_preOrder(head,func);
+	std::cout<< endl;
+	tree_midOrder(head,func);
+	std::cout<< endl;
+	tree_postOrder(head,func);
+	std::cout<< endl;
+	tree_levelOrder(head,func);
+	std::cout<< endl;
+	
 	FreeNode(head);
 	FreeNode(L1);
 	FreeNode(L2);
