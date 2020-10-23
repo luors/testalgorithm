@@ -7,6 +7,7 @@
 #include<queue>
 #include<stack>
 using namespace std;
+namespace TNodeSP{
 template<typename T>
 struct TNode{
 	T val;
@@ -122,7 +123,7 @@ void tree_levelOrder(TNode<T> *root, VisitFunc f)
 
 void tnode_test();
 
-
+}
 #endif
 
 

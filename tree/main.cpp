@@ -11,7 +11,7 @@ int main(int argc , char* argv[]){
 	
 	//Tnode
 	tnode_test();
-	test_smart_ptr();
+	//test_smart_ptr();
 	return 0;
 }
 

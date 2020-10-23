@@ -4,9 +4,9 @@
 #include<iostream>
 
 using namespace std;
+//using namespace TNodeSP;
 
-
-typedef struct TNode<int> IntNode;
+typedef struct TNodeSP::TNode<int> IntNode;
 
 
 
@@ -18,30 +18,30 @@ void VisitNode( void* p)
 
 void tnode_test()
 {
-	IntNode *head = CreateNode(3);
-	IntNode*L1 = l_insert(head,9);
-	IntNode*L2 = r_insert(head,20);
-	IntNode*L3 = l_insert(L1,15);
-	IntNode*L4 = r_insert(L1,7);
-	IntNode*L5 = l_insert(L2,111);
-	IntNode*L6 = r_insert(L2,71);
-	std::cout << "Tree Depth：" << getDepth(head) << endl;
+	IntNode *head = TNodeSP::CreateNode(3);
+	IntNode*L1 = TNodeSP::l_insert(head,9);
+	IntNode*L2 = TNodeSP::r_insert(head,20);
+	IntNode*L3 = TNodeSP::l_insert(L1,15);
+	IntNode*L4 = TNodeSP::r_insert(L1,7);
+	IntNode*L5 = TNodeSP::l_insert(L2,111);
+	IntNode*L6 = TNodeSP::r_insert(L2,71);
+	std::cout << "Tree Depth：" << TNodeSP::getDepth(head) << endl;
 	
-	VisitFunc func = VisitNode;
-	tree_preOrder(head,func);
+	TNodeSP::VisitFunc func = VisitNode;
+	TNodeSP::tree_preOrder(head,func);
 	std::cout<< endl;
-	tree_midOrder(head,func);
+	TNodeSP::tree_midOrder(head,func);
 	std::cout<< endl;
-	tree_postOrder(head,func);
+	TNodeSP::tree_postOrder(head,func);
 	std::cout<< endl;
-	tree_levelOrder(head,func);
+	TNodeSP::tree_levelOrder(head,func);
 	std::cout<< endl;
 	
-	FreeNode(head);
-	FreeNode(L1);
-	FreeNode(L2);
-	FreeNode(L3);
-	FreeNode(L4);
+	TNodeSP::FreeNode(head);
+	TNodeSP::FreeNode(L1);
+	TNodeSP::FreeNode(L2);
+	TNodeSP::FreeNode(L3);
+	TNodeSP::FreeNode(L4);
 	
 }
 
