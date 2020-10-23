@@ -16,7 +16,7 @@ void VisitNode( void* p)
 	//return p;
 }
 
-void tnode_test()
+void TNodeSP::tnode_test()
 {
 	IntNode *head = TNodeSP::CreateNode(3);
 	IntNode*L1 = TNodeSP::l_insert(head,9);
