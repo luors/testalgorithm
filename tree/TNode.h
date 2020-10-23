@@ -66,7 +66,7 @@ int getDepth(TNode<T> *root){
 
 typedef void (*VisitFunc)(void*);
 
-//前序遍历
+//先序遍历
 template<typename T>
 void tree_preOrder(TNode<T> *root, VisitFunc f){
 	
@@ -97,7 +97,7 @@ void tree_postOrder(TNode<T> *root, VisitFunc f){
 
 template<typename T>
 void tree_levelOrder(TNode<T> *root, VisitFunc f)
-{//BFS 广度优遍历 层级遍历
+{//BFS 广度优先遍历 层级遍历
 	
 	typedef std::queue<TNode<T>*> QTYPE;
 	QTYPE q;
@@ -118,6 +118,10 @@ void tree_levelOrder(TNode<T> *root, VisitFunc f)
 		else return;
 	}
 }
+
+
+void tnode_test();
+
 
 #endif
 

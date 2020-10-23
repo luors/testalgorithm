@@ -1,11 +1,6 @@
 
 #include "TNode.h"
 
-#include<iostream>
-
-using namespace std;
-
-
 typedef struct TNode<int> IntNode;
 
 
@@ -16,7 +11,7 @@ void VisitNode( void* p)
 	//return p;
 }
 
-void tnode_test()
+void Test()
 {
 	IntNode *head = CreateNode(3);
 	IntNode*L1 = l_insert(head,9);
