@@ -17,11 +17,11 @@ int main(int argc, char* argv[]){
 	
 	pNode root2 = DLINK::CreateNode(11);
 	
-	DLINK::InsertValAndSort(root2,12);
-	DLINK::InsertValAndSort(root2,9);
-	DLINK::InsertValAndSort(root2,33);
-	DLINK::InsertValAndSort(root2,9);
-	DLINK::InsertValAndSort(root2,1);
+	DLINK::SortInsert(root2,12);
+	DLINK::SortInsert(root2,9);
+	DLINK::SortInsert(root2,33);
+	DLINK::SortInsert(root2,9);
+	DLINK::SortInsert(root2,1);
 	DLINK::Print(root2);
 	
 	DLINK::clear( root2);

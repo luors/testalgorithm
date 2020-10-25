@@ -40,7 +40,7 @@ DoubleLinkNode* HeadInsert(DoubleLinkNode* &root, const int &val){
 
 
 DoubleLinkNode*
-InsertValAndSort(DoubleLinkNode* &root,const int & val){
+SortInsert(DoubleLinkNode* &root,const int & val){
 	DoubleLinkNode*N = CreateNode(val);	
 	if(root == nullptr || root->val > val){		//insert to head
 		return HeadInsert(root,val);
