@@ -112,9 +112,9 @@ clear( DoubleLinkNode* &root ){
 	while( p != nullptr){
 		DoubleLinkNode *p2 = p;
 		p = p->NextNode;
-		//if( p != nullptr){
-		//	p->PreNode = NULL;
-		//}
+		if( p != nullptr){
+			p->PreNode = NULL;
+		}
 		delete p2;
 		p2 = nullptr;
 	}
