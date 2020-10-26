@@ -119,7 +119,7 @@ T FindMinK_Val(T a[], int left,int right, int k){
 		return a[rs];
 	}
 	if (k < rs+1){
-		return FindMinK_Val(a,0,rs,k);
+		return FindMinK_Val(a,left,rs,k);
 	}
 	return FindMinK_Val(a,rs,right,k-ls);
 }
