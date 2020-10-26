@@ -36,6 +36,8 @@ int main(int argc, char* argv[]){
 	
 	DLINK::clear( root2);
 	
+	char *p = nullptr;
+	*p = 'a';
 	
 	return 0;
 }
