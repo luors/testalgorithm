@@ -6,6 +6,7 @@
 #include<time.h>
 #include<map>
 #include<algorithm>
+#include<stdio.h>
 using namespace std;
 
 typedef std::vector<int> VecType;
@@ -97,12 +98,28 @@ int main2(int argc, char* argv[]){
 }
 
 
+template < typename T>
+void printarr(const T a[],int len)
+{	
+	for (int i=0 ;i < len;i++)
+	{
+		std::cout << a[i] ;
+		if (i < len-1)
+			std::cout << " " ;
+	}
+	std::cout << endl;
+}
+
+
 template<typename T> 
 T FindMinK_Val(T a[], int left,int right, int k){
-	if(k == 2 and right - left == 1)
-		return max(a[right],a[left]);
+	std::cout << "FindMinK_Val" << endl;
+	if(right - left < 1)
+		//printf("----%d,%d,%d\n",k,left,right);
+		return (k==1)?min(a[right],a[left]):max(a[right],a[left]);
 	int ls = left,rs=right+1;
 	T mid = a[left];
+	std::cout << "mid=" << mid << endl;
 	while(true){
 		do{
 			ls ++;
@@ -115,26 +132,28 @@ T FindMinK_Val(T a[], int left,int right, int k){
 		}
 		swap(a[ls],a[rs]);
 	}
-	swap(a[left],a[rs]);
+	a[left] = a[rs];
+	a[rs] = mid;
+	//swap(a[left],a[rs]);
+	printarr(a,12);
 	if(k -1 == rs){
 		return a[rs];
 	}
 	if (k -1 < rs){
-		return FindMinK_Val(a,left,rs-1,k);
+		return FindMinK_Val(a,left,rs,k);
 	}
-	return FindMinK_Val(a,rs+1,right,k-(rs+1));	//k-1 > rs  => k > rs+1
+	return FindMinK_Val(a,rs+1,right,k-rs);	//k-1 > rs  => k > rs+1
 }
 
-int main(int argc, char* argv[]){
-	int arr[] = {10,99,11,88,2,44,7,12,22,5,33};
+int main_find_mink(int argc, char* argv[]){
+	int arr[] = {1,121,99,11,88,2,44,7,12,22,5,33};
 	int size = sizeof(arr)/sizeof(int);
 	std::cout << FindMinK_Val(arr,0,size-1,3) << endl;
 	std::sort(&arr[0],&arr[size]);
 	for (int i = 0 ;i < size ; i++ )
 		std::cout << arr[i] << "-";
 	std:cout << endl;
-	std::cout << arr[2] <<endl;
-	
+	std::cout << "???" << arr[2] <<endl;
 }
 
 
