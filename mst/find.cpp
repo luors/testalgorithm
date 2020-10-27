@@ -145,7 +145,7 @@ T FindMinK_Val(T a[], int left,int right, int k){
 	return FindMinK_Val(a,rs+1,right,k-rs);	//k-1 > rs  => k > rs+1
 }
 
-int main_find_mink(int argc, char* argv[]){
+int main(int argc, char* argv[]){
 	int arr[] = {1,121,99,11,88,2,44,7,12,22,5,33};
 	int size = sizeof(arr)/sizeof(int);
 	std::cout << FindMinK_Val(arr,0,size-1,3) << endl;
