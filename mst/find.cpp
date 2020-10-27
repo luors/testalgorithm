@@ -7,6 +7,7 @@
 #include<map>
 #include<algorithm>
 #include<stdio.h>
+#include<sstream>
 using namespace std;
 
 typedef std::vector<int> VecType;
@@ -145,7 +146,7 @@ T FindMinK_Val(T a[], int left,int right, int k){
 	return FindMinK_Val(a,rs+1,right,k-rs);	//k-1 > rs  => k > rs+1
 }
 
-int main(int argc, char* argv[]){
+int main_FindMinK(int argc, char* argv[]){
 	int arr[] = {1,121,99,11,88,2,44,7,12,22,5,33};
 	int size = sizeof(arr)/sizeof(int);
 	std::cout << FindMinK_Val(arr,0,size-1,3) << endl;
@@ -154,7 +155,103 @@ int main(int argc, char* argv[]){
 		std::cout << arr[i] << "-";
 	std:cout << endl;
 	std::cout << "???" << arr[2] <<endl;
+	return 0;
 }
+
+
+
+class OutOfBounds 
+{
+   public:
+      OutOfBounds
+            (string theMessage = "Matrix index out of bounds")
+            {message = theMessage;}
+      void outputMessage() {cout << message << endl;}
+   private:
+      string message;
+};
+
+template <class T>
+T
+_Select( T a[], int left,int right,int k){
+	if (left >= right){
+		return a[left];
+	}
+	int ls =left,rs=right+1;
+	T mid = a[left];
+	while(true){
+		do {
+			ls ++;
+			
+		}while(a[ls] < mid);
+		
+		do {
+			rs--;
+		}while(a[rs] > mid);
+		
+		if (ls >= rs){
+			break;
+		}
+		swap(a[ls],a[rs]);
+	}
+	if(rs-left+1 == k){
+		return mid;
+	}
+	a[left] = a[rs];
+	a[rs] = mid;
+	if( rs - left + 1 < k){
+		return _Select(a, rs+1, right, k - ( rs - left + 1) );
+	}else{
+		
+		return _Select(a , left, rs-1, k);
+	}
+}
+
+template <class T>
+T
+Select( T a[], int n, int k){
+	
+	if (k<1 || k > n)
+		throw OutOfBounds();
+	return _Select(a,0,n-1,k);
+}
+
+
+void testmap(){
+	typedef std::map<int,int> M;
+	typedef M::iterator MIT;
+	M m;
+	m.insert( make_pair(1,1));
+	m.insert( M::value_type(11,22));
+	for (auto v : m)
+	{
+		std::ostringstream o;
+		o << typeid(v).name() << " first=" << v.first << " second=" << v.second; 
+		std::cout << o.str() << endl;
+	}
+	for (MIT it=m.begin(); it != m.end(); it++){
+		ostringstream o;
+		o << typeid(it).name() << " first=" << it->first << " second=" << it->second; 
+		std::cout << o.str() << endl;
+	}
+}
+
+
+int main(int argc, char* argv[]){
+	int arr[] = {1,121,99,11,88,2,44,7,12,22,5,33};
+	int size = sizeof(arr)/sizeof(int);
+	int  k = 10;
+	std::cout << Select(arr,size,k) << endl;
+	std::sort(&arr[0],&arr[size]);
+	for (int i = 0 ;i < size ; i++ )
+		std::cout << arr[i] << "-";
+	std:cout << endl;
+	std::cout << "???" << arr[k-1] <<endl;
+	testmap();
+}
+
+
+
 
 
 
