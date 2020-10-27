@@ -5,6 +5,7 @@
 #include<stdlib.h>
 #include<time.h>
 #include<map>
+#include<algorithm>
 using namespace std;
 
 typedef std::vector<int> VecType;
@@ -98,36 +99,42 @@ int main2(int argc, char* argv[]){
 
 template<typename T> 
 T FindMinK_Val(T a[], int left,int right, int k){
-	//if (left >= right) return;
-	int ls = left+1,rs=right;
+	if(k == 2 and right - left == 1)
+		return max(a[right],a[left]);
+	int ls = left,rs=right+1;
 	T mid = a[left];
 	while(true){
-		while(ls < right){
-			if (a[ls] > mid || ls>=right) break;
+		do{
 			ls ++;
-		}
-		while(rs > ls && a[rs] > mid){
+		}while(a[ls] < mid);
+		do{
 			rs --;
-		}
+		}while(a[rs] > mid);
 		if (ls >= rs){
 			break;
 		}
 		swap(a[ls],a[rs]);
 	}
 	swap(a[left],a[rs]);
-	if(k == rs+1){
+	if(k -1 == rs){
 		return a[rs];
 	}
-	if (k < rs+1){
-		return FindMinK_Val(a,left,rs,k);
+	if (k -1 < rs){
+		return FindMinK_Val(a,left,rs-1,k);
 	}
-	return FindMinK_Val(a,rs,right,k-ls);
+	return FindMinK_Val(a,rs+1,right,k-(rs+1));	//k-1 > rs  => k > rs+1
 }
 
 int main(int argc, char* argv[]){
-	int arr[] = {8,1,2,44,7,11,12,22,5,3};
+	int arr[] = {10,99,11,88,2,44,7,12,22,5,33};
 	int size = sizeof(arr)/sizeof(int);
-	std::cout << FindMinK_Val(arr,0,size-1,3);
+	std::cout << FindMinK_Val(arr,0,size-1,3) << endl;
+	std::sort(&arr[0],&arr[size]);
+	for (int i = 0 ;i < size ; i++ )
+		std::cout << arr[i] << "-";
+	std:cout << endl;
+	std::cout << arr[2] <<endl;
+	
 }
 
 
