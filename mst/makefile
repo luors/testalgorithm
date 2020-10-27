@@ -1,8 +1,8 @@
 
 CC = g++ -g -o0 -std=c++11
 
-find.out:find.cpp
-	$(CC) find.cpp -o find.out
+a.out:find.cpp
+	$(CC) find.cpp -o a.out
 
 clean:
 	rm *.out
