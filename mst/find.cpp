@@ -8,6 +8,7 @@
 #include<algorithm>
 #include<stdio.h>
 #include<sstream>
+#include<set>
 using namespace std;
 
 typedef std::vector<int> VecType;
@@ -237,8 +238,48 @@ void testmap(){
 }
 
 
+typedef std::multiset<int, greater<int>> SET;
+typedef SET::iterator SETITR;
+
+
+int
+SelectBySet(int arr[],int n, int k){
+	if (k > n)
+		throw OutOfBounds();
+	SET s;
+	for(int i=0;i<n;i++){
+		if (s.size() < k){
+			s.insert(arr[i]);
+		}else{
+			SETITR it = s.begin();
+			if( *it > arr[i] ){
+				s.erase(it);
+				s.insert(arr[i]);
+			}
+		}
+	}
+	return *(s.begin());
+}
+
+void InsertBySort(std::vector<int> vec, int Max,int val)
+{
+	std::vector<int>:: iterator itr;
+	for ( itr = vec.begin(); itr != vec.end(); itr++){
+		if( *itr < val)
+		{
+			vec.insert(itr,val);
+			break;
+		}
+	}
+	if (vec.size() > Max)
+		vec.erase(vec.begin());
+}
+
+
+
+
 int main(int argc, char* argv[]){
-	int arr[] = {1,121,99,11,88,2,44,7,12,22,5,33};
+	int arr[] = {1,121,99,11,77,88,2,44,7,12,22,5,33};
 	int size = sizeof(arr)/sizeof(int);
 	int  k = 10;
 	std::cout << Select(arr,size,k) << endl;
@@ -247,7 +288,8 @@ int main(int argc, char* argv[]){
 		std::cout << arr[i] << "-";
 	std:cout << endl;
 	std::cout << "???" << arr[k-1] <<endl;
-	testmap();
+	std::cout << "SelectBySet:" << SelectBySet(arr,size,k) << endl;
+	//testmap();
 }
 
 
