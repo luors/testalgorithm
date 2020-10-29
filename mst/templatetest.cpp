@@ -37,32 +37,32 @@ public:
 
 
 template < class T>
-class Fac{
+class ValueFactory{
 public:
 	BaseValue* create() = 0;
-	~Fac(){}
+	~ValueFactory(){}
 };
 
 template <>
-class Fac<int>{
+class ValueFactory<int>{
 
 public:
 	virtual BaseValue* create() {
 		return new IntValue();
 	};
-	~Fac(){}
+	~ValueFactory(){}
 
 };
 
 template <>
-class Fac<string>{
+class ValueFactory<string>{
 
 public:
 	BaseValue* create() {
-		std::cout<< "Fac<string> create"<< endl;
+		std::cout<< "ValueFactory<string> create"<< endl;
 		return new StringValue();
 	};
-	~Fac(){}
+	~ValueFactory(){}
 
 };
 
@@ -73,7 +73,7 @@ public:
 	template<typename T>
 	void Set(const char* Key, T val)
 	{
-		Fac<T> _creator;
+		ValueFactory<T> _creator;
 		Data[Key] = shared_ptr<BaseValue>(_creator.create());
 		
 	}
