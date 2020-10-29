@@ -40,7 +40,7 @@ template < class T>
 class ValueFactory{
 public:
 	BaseValue* create() = 0;
-	~ValueFactory(){}
+	virtual ~ValueFactory(){}
 };
 
 template <>
@@ -50,7 +50,7 @@ public:
 	virtual BaseValue* create() {
 		return new IntValue();
 	};
-	~ValueFactory(){}
+	virtual~ValueFactory(){}
 
 };
 
@@ -62,7 +62,7 @@ public:
 		std::cout<< "ValueFactory<string> create"<< endl;
 		return new StringValue();
 	};
-	~ValueFactory(){}
+	virtual ~ValueFactory(){}
 
 };
 
