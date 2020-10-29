@@ -3,13 +3,12 @@
 #include<memory>
 using namespace std;
 
-
-
-
 class BaseValue{
 public:	
-	virtual ~BaseValue(){}
-	
+	BaseValue(){
+	}
+	virtual ~BaseValue(){
+	}
 };
 
 class IntValue:public BaseValue{
